@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Review\Model\ResourceModel\Review" type="MageMango\ProductReviewImage\Model\ResourceModel\Adminhtml\Review" />
+    <type name="Magento\Review\Block\Adminhtml\Edit\Form">
+        <plugin name="modify_review_edit_form" type="MageMango\ProductReviewImage\Plugin\Adminhtml\Edit\Form" />
+    </type>
+</config>
