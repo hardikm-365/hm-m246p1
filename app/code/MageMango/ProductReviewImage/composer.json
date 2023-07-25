@@ -1,0 +1,20 @@
+{
+    "name": "magethirteen\/productreviewimage",
+    "description": "Product Review Image by MageMango",
+    "require": {
+        "php": ">=7.3.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageMango\\ProductReviewImage\\": ""
+        }
+    }
+}
