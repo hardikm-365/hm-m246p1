@@ -2,7 +2,6 @@
 namespace MageCat\ImportExportCategory\Plugin;
 
 use Magento\Framework\Session\SessionManagerInterface;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\Response\Http\FileFactory;
 use Magento\ImportExport\Model\ExportFactory;
 
@@ -39,7 +38,7 @@ class Export
         $this->fileFactory = $fileFactory;
         $this->export = $export;
         $this->sessionManager = $sessionManager
-            ?? ObjectManager::getInstance()->get(SessionManagerInterface::class);
+            ?? \Magento\Framework\Session\SessionManagerInterface::class;
     }
 
     /**
@@ -49,13 +48,10 @@ class Export
      */
     public function beforeExecute(\Magento\ImportExport\Controller\Adminhtml\Export\Export $subject)
     {
-
         $params = $subject->getRequest()->getParams();
         $entity = $params['entity'];
 
         if ($entity == 'catalog_category') {
-
-            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $model = $this->export->create();
             $model->setData($subject->getRequest()->getParams());
             $this->sessionManager->writeClose();
