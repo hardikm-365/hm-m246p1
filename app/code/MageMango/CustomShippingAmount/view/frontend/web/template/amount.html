@@ -1,0 +1,14 @@
+<div class="field field-user-email required">
+    <label for="customdata" class="label">
+        <span><!-- ko i18n: 'Add Shipping Amount'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <!-- ko if: window.checkoutConfig.shipping_type.length > 0 -->
+        <select name="shipping_amount" id="shipping_amount" data-bind="event:{ change: shippingChange}">
+            <!-- ko foreach: { data: window.checkoutConfig.shipping_type, as: 'item' } -->
+            <option data-bind="text: item, value: item"></option>
+            <!-- /ko -->
+        </select>
+        <!-- /ko -->
+    </div>
+</div>
