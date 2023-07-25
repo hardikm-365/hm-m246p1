@@ -332,9 +332,6 @@ class Category extends AbstractEntity
     {
     
         if ($entityData) {
-           
-            $rows = [];
-
             foreach ($entityData as $entityRows) {
 
                 $parentId = 2;
