@@ -1,0 +1,34 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');//get current product
+$product1 = $objectManager->get('\Magento\Catalog\Model\Product')->load($product->getId());
+$customOptions = $objectManager->get('Magento\Catalog\Model\Product\Option')->getProductOptionCollection($product1);
+$count = count($customOptions->getData());
+$arr = [];
+foreach($customOptions as $optionKey => $optionVal){
+	$arr[$optionVal['option_id']] = count($optionVal->getValues());
+	// echo count($optionVal->getValues());
+	foreach($optionVal->getValues() as $valuesKey => $valuesVal) {
+                      // echo $valuesVal->getId().' '.$valuesVal->getTitle();
+                }
+}
+$arr1 = implode(',', $arr);
+$formkey = $block->getFormKey();
+
+// echo "<pre>";
+// print_r($arr);
+// // print_r($customOptions->getData());
+// exit();
+?>
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Custom_CustomOption/js/custom": {
+                    "Test": "<?php echo "Test"; ?>",
+                    "Count": "<?php echo $count; ?>",
+                    "Formkey" : "<?php echo $formkey; ?>",
+                    "OptionCount": "<?php echo $arr1; ?>"
+                }
+            }
+        }
+</script>
