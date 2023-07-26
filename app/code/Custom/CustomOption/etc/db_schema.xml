@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="catalog_product_option" resource="default" engine="innodb" comment="Catalog Product Option Table">
+        <column xsi:type="int" name="option_id" unsigned="true" nullable="false" identity="true"
+                comment="Option ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product ID"/>
+        <column xsi:type="varchar" name="type" nullable="true" length="50" comment="Type"/>
+        <column xsi:type="smallint" name="is_require" unsigned="false" nullable="false" identity="false"
+                default="1" comment="Is Required"/>
+        <column xsi:type="varchar" name="sku" nullable="true" length="64" comment="SKU"/>
+       <column xsi:type="int" name="qty" nullable="true" comment="Quantity"/>
+        <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Image"/>
+        <column xsi:type="varchar" name="image_hidden" nullable="true" length="255" comment="Image Hidden"/>
+        <column xsi:type="int" name="max_characters" unsigned="true" nullable="true" identity="false"
+                comment="Max Characters"/>
+        <column xsi:type="varchar" name="file_extension" nullable="true" length="50" comment="File Extension"/>
+        <column xsi:type="smallint" name="image_size_x" unsigned="true" nullable="true" identity="false"
+                comment="Image Size X"/>
+        <column xsi:type="smallint" name="image_size_y" unsigned="true" nullable="true" identity="false"
+                comment="Image Size Y"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CAT_PRD_OPT_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="catalog_product_option"
+                    column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <index referenceId="CATALOG_PRODUCT_OPTION_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+   <table name="catalog_product_option_type_value" resource="default" engine="innodb"
+           comment="Catalog Product Option Type Value Table">
+        <column xsi:type="int" name="option_type_id" unsigned="true" nullable="false" identity="true"
+                comment="Option Type ID"/>
+        <column xsi:type="int" name="option_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Option ID"/>
+        <column xsi:type="varchar" name="sku" nullable="true" length="64" comment="SKU"/>
+        <column xsi:type="int" name="qty" nullable="true" comment="Quantity"/>
+        <column xsi:type="varchar" name="image" nullable="true" length="255" comment="Image"/>
+        <column xsi:type="varchar" name="image_hidden" nullable="true" length="255" comment="Image Hidden"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="option_type_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CAT_PRD_OPT_TYPE_VAL_OPT_ID_CAT_PRD_OPT_OPT_ID"
+                    table="catalog_product_option_type_value" column="option_id" referenceTable="catalog_product_option"
+                    referenceColumn="option_id" onDelete="CASCADE"/>
+        <index referenceId="CATALOG_PRODUCT_OPTION_TYPE_VALUE_OPTION_ID" indexType="btree">
+            <column name="option_id"/>
+        </index>
+    </table>
+</schema>
